@@ -1,0 +1,129 @@
+<html>
+<head>
+	<style>
+		.package_container{
+			-webkit-perspective: 800;
+			/*border:1px solid red;*/
+			position:absolute;
+			margin-left:50%;left:-200px;
+			margin-top:50%;top:-200px;
+			width:400px;height:400px;
+		}
+		.package{
+			width:100%;height:100%;/*定义长宽，后面旋转将以横竖中线为旋转轴*/
+			-webkit-transition:-webkit-transform 1s;
+			-webkit-transform-style: preserve-3d;
+			/*-webkit-transform: rotateY(-45deg);*/
+      		-webkit-animation: zhuan 18s infinite linear;
+		}    
+		@-webkit-keyframes zhuan {
+	      from { -webkit-transform: rotateY(0) rotateX(0); }
+	      to   { -webkit-transform: rotateY(-360deg) rotateX(-360deg); }
+    	}
+		.package.right_side{
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: rotateY(-90deg);
+		}
+		.package.left_side{
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: rotateY(90deg);
+		}
+		.package.in_side{
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: rotateX(-90deg);
+		}
+		.package>div{
+			position:absolute;left:0px;top:0px;
+			text-align:center;/*文字水平居中*/
+			line-height:400px;/*文字垂直居中*/
+			width:400px;height:400px;
+			border:1px solid #B2A28B;/*background-color:rgba(0,1,1,0.2) ;*/
+			-webkit-backface-visibility: visibility;
+			background: -webkit-radial-gradient(transparent 60%, rgba(0,0,0,0.2)),url(CartBackground.jpg);
+			}
+		.package>div:nth-child(1){-webkit-transform: translateZ(200px);}
+		.package>div:nth-child(2){-webkit-transform: rotateY(90deg) translateZ(200px);}
+		.package>div:nth-child(3){-webkit-transform: translateZ(-200px);}
+		.package>div:nth-child(4){-webkit-transform: rotateY(-90deg) translateZ(200px);}
+		.package>div:nth-child(5){-webkit-transform: rotateX(90deg) translateZ(-200px);}
+		.package>div:nth-child(7){-webkit-transform: rotateY(-90deg) ;}
+		.sticker{
+			position:absolute;left:20px;top:330px;
+			width:50px;height:50px;
+			line-height:50px;
+			background:-webkit-repeating-linear-gradient(top left,
+														#8EABF0,#8EABF0 5px,
+														#7397E0 5px,#7397E0 10px);
+			background-position:-50px;
+			border:3px solid #FFF;
+			border-radius:5px;
+			-webkit-transition-property:
+				background-position,
+				border-bottom-left-radius,
+				box-shadow;
+			-webkit-transition-duration:0.5s;
+		}
+		.sticker:hover{
+			background-position:0;
+			border-bottom-left-radius:50% 20px;
+			box-shadow:-5px 10px 15px rgba(0,0,0,0.25);
+		}
+		@-webkit-keyframes stamp-it{
+			25%{
+				-webkit-transform:translateZ(200px)  rotateY(-45deg) rotateX(-30deg);
+			}
+			50%{
+				-webkit-transform:translateZ(300px)  rotateY(-45deg) rotateX(-30deg) 	scale(2);
+			}
+			100%{
+				top:20px;
+				left:330px;
+				-webkit-transform:rotate(-5deg);
+			}
+		}
+		</style>
+		<script type="text/javascript">
+			function reset(){
+				packbox.className="package";
+			}
+			function turnRight(){
+				packbox.className="package right_side";
+			}
+			function turnLeft(){
+				packbox.className="package left_side";
+			}
+			function turnInSide(){
+				packbox.className="package in_side";
+			}
+			
+			function stampIt(){
+				var stampElement=document.getElementById("stampSticker");
+				stampElement.style.webkitAnimation="stamp-it 2s forwards"
+			}
+			</script>
+</head>
+<body>
+	<div onclick="reset()">reset</div>
+	<div onclick="turnRight()">turnRight</div>
+	<div onclick="turnLeft()">turnLeft</div>
+	<div onclick="turnInSide()">turnInSide</div>
+<div class="package_container">
+<div class="package" id="packbox">
+<div>1
+<div class="sticker" id="stampSticker" onclick="stampIt()">stamp</div>
+</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<!--
+<div>X----------------------+></div>
+<div>Z----------------------+></div>
+-->
+</div>
+</div>
+		<script type="text/javascript">
+			var packbox=document.getElementById("packbox");
+			</script>
+</body>
+</html>
