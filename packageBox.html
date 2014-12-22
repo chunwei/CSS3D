@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<style>
+			body{text-align:center;margin:100 200;}
+			.package{
+				-webkit-transform-style:perserve-3d;
+				-webkit-transition:-webkit-transform 1s;
+				
+			}
+			.package.right_side{
+				-webkit-transform:rotateY(-90deg);
+				
+			}
+			.package.inside{
+				-webkit-transform:rotateX(-90deg);
+				
+			}
+			.package_container{
+				-webkit-perspective:800px;
+				
+			}
+			.package>div{
+				width:400px;height:400px;border:1px solid gray;
+				background:lightblue;
+				background-image:-webkit-radial-gradient(transparent 50%, rgba(0,0,0,0.5));
+				position:absolute;left:0px;top:0px;
+				
+				}
+
+			.package>div:nth-child(1){
+				-webkit-transform:translateZ(200px);
+			}
+			.package>div:nth-child(2){
+				-webkit-transform:rotateY(90deg) translateZ(200px);
+			}
+			.package>div:nth-child(3){
+				-webkit-transform:translateZ(-200px);
+			}
+			.package>div:nth-child(4){
+				-webkit-transform:rotateY(-90deg) translateZ(200px);
+			}
+			.package>div:nth-child(5){
+				-webkit-transform:rotateX(90deg) translateZ(-200px);
+			}
+
+			</style>
+			<script type="text/javascript">
+				function turnRight(){
+					var packbox=document.getElementById("packagediv");
+					packbox.className="package right_side";
+				}
+				function turnInSide(){
+					var packbox=document.getElementById("packagediv");
+					packbox.className="package inside";
+				}
+				</script>
+	</head>
+	<body>
+		<div onclick="javascript:turnInSide()">inSide</div>
+		<div onclick="javascript:turnRight()">rotateRight</div>
+		<div class='package_container'>
+			<div id='packagediv' class='package'>
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+				<div>5</div>
+			</div>
+		</div>
+	</body>
+</html>
